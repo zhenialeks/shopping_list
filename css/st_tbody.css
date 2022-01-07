@@ -1,0 +1,12 @@
+
+.st_tbody__td{
+	border: 1px solid grey;
+}
+.st_tbody__name{
+	border: none;
+	width: 250px;
+}
+.st_tbody__price{
+	border: none;
+	width: 50px;
+}

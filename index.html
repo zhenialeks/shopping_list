@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/main.css">
+	<title>ShopList</title>
+</head>
+<body>
+<!-- 	<script id="__bs_script__">//<![CDATA[
+	document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.27.7'><\/script>".replace("HOST", location.hostname));
+	//]]></script>
+
+ -->
+	<header class="header">
+		<h1 class="header__h1">Shopping List</h1>
+	</header>
+	<main class="main">
+		<div class="notification">tests</div>
+		<table class="main__shop_table shop_table">
+			<thead class="shop_table__st_thead st_thead">
+				<tr class="st_thead__tr">
+					<td class="st_thead__td st_thead__name">Name</td>
+					<td class="st_thead__td st_thead__price" >Price</td>
+				</tr>
+			</thead>
+			<tbody class="shop_table__st_tbody st_tbody">
+				<tr class="st_tbody__tr">
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__name"/>
+					</td>
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__price">
+					</td>
+				</tr>
+				<tr class="st_tbody__tr">
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__name"/>
+					</td>
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__price">
+					</td>
+				</tr>
+				<tr class="st_tbody__tr">
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__name"/>
+					</td>
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__price">
+					</td>
+				</tr>
+				<tr class="st_tbody__tr">
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__name"/>
+					</td>
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__price">
+					</td>
+				</tr>
+				
+				
+			</tbody>
+			<tfoot class="shop_table__st_tfoot st_tfoot">
+				<tr clas="st_tfoot__tr">
+					<td class="st_tfoot__td st_tfoot__name">TOTAL</td>
+					<td class="st_tfoot__td st_tfoot__price">0</td>
+				</tr>
+			</tfoot>
+		</table>
+		<div class="main__action_block action_block">
+			<button class="action_block__btn btn btn--add">+</button><button class="action_block__btn btn btn--save">save</button><button class="action_block__btn btn btn--load">load</button><button class="action_block__btn btn btn--clear-mem">clear mem</button><button class="action_block__btn btn btn--clear">clear</button>
+		</div>
+
+	</main>
+	<footer class="footer">
+		(с)
+		<a class="footer__author_link" href="https://github.com/zhenialeks">zhenialeks</a>, 2022 
+	</footer>
+
+
+	<script>
+
+		function notify(msg){
+			document.querySelector(".notification").innerHTML = msg;
+			document.querySelector(".notification").classList.toggle("notification--visible");
+			setTimeout(() => {
+				document.querySelector(".notification").classList.toggle("notification--visible")}, 2000);
+
+		}
+
+		function recaltulate_summary(){
+			let total_sum = 0.0;
+			document.querySelectorAll(".st_tbody__price").forEach(el => {
+				let cur = parseFloat(el.value);
+				if (!isNaN(cur))
+					total_sum += cur;
+			});
+			console.log(total_sum);
+			document.querySelector(".st_tfoot__price").innerHTML = total_sum.toFixed();
+		}
+
+		function add_price_listeners(){
+			document.querySelectorAll(".st_tbody__price").forEach(el => {
+				el.addEventListener("input", () => {
+					recaltulate_summary();
+				});
+			});
+		}
+
+		function add_btn_add_listener(){
+			document.querySelector(".btn--add").addEventListener("mouseup", () => {
+				document.querySelector(".st_tbody").insertAdjacentHTML(
+					'beforeend',
+				"<tr class=\"st_tbody__tr\">\
+					<td class=\"st_tbody__td\">\
+						<input type=\"text\" class=\"st_tbody__name\"/>\
+					</td>\
+					<td class=\"st_tbody__td\">\
+						<input type=\"text\" class=\"st_tbody__price\">\
+					</td>\
+				</tr>");
+				add_price_listeners();
+			});
+		}
+
+		function add_btn_clear_listener(){
+			document.querySelector(".btn--clear").addEventListener("click", () => {
+				document.querySelectorAll(".st_tbody__price").forEach(el => {
+					el.value = "";
+				});
+
+				document.querySelectorAll(".st_tbody__name").forEach(el => {
+					el.value = "";
+				});
+
+				document.querySelector(".st_tfoot__price").innerHTML = "0";
+				notify("cleared!");
+			});
+		}
+
+		function add_btn_clear_mem_listener(){
+			document.querySelector(".btn--clear-mem").addEventListener("click", el => {
+					localStorage.removeItem("list_data");
+					document.querySelector(".btn--load").disabled = true;
+					document.querySelector(".btn--clear-mem").disabled = true;
+				notify("memory is cleared");
+			});
+
+		}
+
+		function add_btn_save_listener(){
+			document.querySelector(".btn--save").addEventListener("click", () => {
+				let data = [];
+				let cur_i = 0;
+				document.querySelectorAll(".st_tbody__tr").forEach(el => {
+					data[cur_i] = {
+						name:el.querySelector(".st_tbody__name").value,
+						price:el.querySelector(".st_tbody__price").value
+					};
+					cur_i++;
+				})
+
+				localStorage.setItem("list_data", JSON.stringify(data));
+				
+
+				document.querySelector(".btn--load").disabled = false;
+				document.querySelector(".btn--clear-mem").disabled = false;
+				notify("saved to mem!");
+			});
+		}
+
+		function add_btn_load_listener(){
+			document.querySelector(".btn--load").addEventListener("click", ()=> {
+				let list_data = JSON.parse(localStorage.getItem("list_data"));	
+				document.querySelector(".st_tbody").innerHTML = "";
+
+				let new_html = "";
+				for (let index = 0; index < list_data.length; index++) {
+					const element = list_data[index];
+					new_html += "<tr class=\"st_tbody__tr\"> \
+					<td class=\"st_tbody__td\"><input type=\"text\" class=\"st_tbody__name\"/ value=\"" + element.name +  "\"></td> \
+					<td class=\"st_tbody__td\"><input type=\"text\" class=\"st_tbody__price\" value=\"" + element.price + "\"></td> \
+					</tr>";
+				}
+				
+				notify("mem is loaded");
+
+
+			document.querySelector(".st_tbody").innerHTML = new_html;
+
+			add_price_listeners();
+			recaltulate_summary();
+			});
+		}
+
+		function initial_script(){
+			add_price_listeners();
+			add_btn_add_listener();
+			add_btn_clear_mem_listener();
+			add_btn_load_listener();
+			add_btn_save_listener();
+			add_btn_clear_listener();
+
+			if (localStorage.length == 0){
+				document.querySelector(".btn--load").disabled = true;
+				document.querySelector(".btn--clear-mem").disabled = true;
+			}
+		}
+
+		initial_script();
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.btn{
+	border-radius: 0;
+	border: 1px solid grey;
+	margin: 0 5px;
+	padding: 5px 10px;
+}
+
+.btn[disabled]{
+	border-color: lightgrey;
+}
+
+.btn--add{
+	margin-left: 0;
+}

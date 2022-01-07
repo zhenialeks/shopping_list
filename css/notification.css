@@ -1,0 +1,21 @@
+.notification{
+	display: inline-block;
+	position: absolute;
+	top: 10px;
+	left: 9px;
+	border-radius: 4px;
+	height: 20px;
+	margin: 0;
+	padding: 10px;
+	line-height: 20px;
+	background-color: lightyellow;	
+	opacity: 0;
+	transition: all 0.5s ease;
+	width: 250px;
+	border: 1px solid lightgrey;
+	box-sizing: content-box;
+}
+
+.notification--visible{
+	opacity: 1;
+}

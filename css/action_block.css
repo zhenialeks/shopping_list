@@ -1,0 +1,9 @@
+.action_block{
+	/*outline: 1px solid grey;*/
+	display: inline-block;
+	padding-left: 0px;
+}
+
+.action_block__btn{
+	margin: 5px;
+}

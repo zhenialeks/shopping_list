@@ -1,0 +1,17 @@
+@import url(header.css);
+@import url(footer.css);
+@import url(shop_table.css);
+@import url(st_tbody.css);
+@import url(st_thead.css);
+@import url(st_tfoot.css);
+@import url(action_block.css);
+@import url(btn.css);
+@import url(notification.css);
+@import url(a.css);
+html{
+	font-family: monospace;
+}
+
+.main__action_block{
+	margin-top: 10px;
+}
