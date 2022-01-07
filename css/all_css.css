@@ -1,0 +1,91 @@
+.footer{
+	padding: 10px 0;
+}
+.shop_table{
+	border-collapse: collapse;
+}
+
+.st_tbody__td{
+	border: 1px solid grey;
+}
+.st_tbody__name{
+	border: none;
+	width: 250px;
+}
+.st_tbody__price{
+	border: none;
+	width: 50px;
+}
+
+.st_thead__td{
+	border: 1px solid grey;
+}
+
+.st_thead__price{
+	width:10px;
+}
+
+.st_tfoot__td{
+	border: 1px solid grey;
+}
+.action_block{
+	/*outline: 1px solid grey;*/
+	display: inline-block;
+	padding-left: 0px;
+}
+
+.action_block__btn{
+	margin: 5px;
+}
+.btn{
+	border-radius: 0;
+	border: 1px solid grey;
+	margin: 0 5px;
+	padding: 5px 10px;
+}
+
+.btn[disabled]{
+	border-color: lightgrey;
+}
+
+.btn--add{
+	margin-left: 0;
+}
+.notification{
+	display: inline-block;
+	position: absolute;
+	top: 10px;
+	left: 9px;
+	border-radius: 4px;
+	height: 20px;
+	margin: 0;
+	padding: 10px;
+	line-height: 20px;
+	background-color: lightyellow;	
+	opacity: 0;
+	transition: all 0.5s ease;
+	width: 250px;
+	border: 1px solid lightgrey;
+	box-sizing: content-box;
+}
+
+.notification--visible{
+	opacity: 1;
+}
+.a{
+	color:blue;
+	text-decoration:none;
+}
+.a:hover {
+	text-decoration: underline;
+}
+.a:visited{
+	text-decoration:none;
+}
+html{
+	font-family: monospace;
+}
+
+.main__action_block{
+	margin-top: 10px;
+}
