@@ -7,11 +7,6 @@
 	<title>ShopList</title>
 </head>
 <body>
-<!-- 	<script id="__bs_script__">//<![CDATA[
-	document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.27.7'><\/script>".replace("HOST", location.hostname));
-	//]]></script>
-
- -->
 	<header class="header">
 		<h1 class="header__h1">Shopping List</h1>
 	</header>
@@ -25,6 +20,46 @@
 				</tr>
 			</thead>
 			<tbody class="shop_table__st_tbody st_tbody">
+				<tr class="st_tbody__tr">
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__name"/>
+					</td>
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__price">
+					</td>
+				</tr>
+				<tr class="st_tbody__tr">
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__name"/>
+					</td>
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__price">
+					</td>
+				</tr>
+				<tr class="st_tbody__tr">
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__name"/>
+					</td>
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__price">
+					</td>
+				</tr>
+				<tr class="st_tbody__tr">
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__name"/>
+					</td>
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__price">
+					</td>
+				</tr>
+				<tr class="st_tbody__tr">
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__name"/>
+					</td>
+					<td class="st_tbody__td">
+						<input type="text" class="st_tbody__price">
+					</td>
+				</tr>
 				<tr class="st_tbody__tr">
 					<td class="st_tbody__td">
 						<input type="text" class="st_tbody__name"/>
@@ -182,7 +217,7 @@
 					<td class=\"st_tbody__td\"><input type=\"text\" class=\"st_tbody__price\" value=\"" + element.price + "\"></td> \
 					</tr>";
 				}
-				
+
 				notify("mem is loaded");
 
 
